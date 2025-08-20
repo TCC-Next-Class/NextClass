@@ -3,7 +3,7 @@ import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import AuthBase from '@/layouts/AuthLayout.vue';
+import AuthBase from '@/layouts/AuthLayoutSplit.vue';
 import { Link, Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
 </script>
@@ -21,14 +21,14 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
                     <User class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
 
                     <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" name="name"
-                        placeholder=" " class="peer pl-10" />
+                        placeholder=" " class="peer pl-10 bg-input/30" />
 
                     <label for="name"
                         class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="black:bg-input/30 px-1 block">Nome</span>
+                        <span class="bg-input/30 px-1 block select-none">Nome</span>
                     </label>
 
                     <InputError :message="errors.name" />
@@ -37,13 +37,13 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
                 <div class="relative">
                     <Mail class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input id="email" type="email" required :tabindex="2" autocomplete="email" name="email"
-                        placeholder=" " class="peer pl-10" />
+                        placeholder=" " class="peer pl-10 bg-input/30" />
                     <label for="email"
                         class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="black:bg-input/30 px-1 block">Email</span>
+                        <span class="bg-input/30 px-1 block select-none">Email</span>
                     </label>
                     <InputError :message="errors.email" />
                 </div>
@@ -51,13 +51,13 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
                 <div class="relative">
                     <Lock class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input id="password" type="password" required :tabindex="3" autocomplete="new-password"
-                        name="password" placeholder=" " class="peer pl-10" />
+                        name="password" placeholder=" " class="peer pl-10 bg-input/30" />
                     <label for="password"
                         class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="black:bg-input/30 px-1 block">Senha</span>
+                        <span class="bg-input/30 px-1 block select-none">Senha</span>
                     </label>
                     <InputError :message="errors.password" />
                 </div>
@@ -65,13 +65,13 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
                 <div class="relative">
                     <Lock class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input id="password_confirmation" type="password" required :tabindex="4" autocomplete="new-password"
-                        name="password_confirmation" placeholder=" " class="peer pl-10" />
+                        name="password_confirmation" placeholder=" " class="peer pl-10 bg-input/30" />
                     <label for="password_confirmation"
                         class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="black:bg-input/30 px-1 block">Confirmar Senha</span>
+                        <span class="bg-input/30 px-1 block select-none">Confirmar Senha</span>
                     </label>
                     <InputError :message="errors.password_confirmation" />
                 </div>

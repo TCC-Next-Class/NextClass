@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, Link, usePage } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
 import Footer from '@/components/Footer.vue'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -10,15 +10,9 @@ const page = usePage<any>();
 const user = page.props.auth?.user; 
 </script>
 <template>
-
-  <Head>
-    <title>Nova Landing</title>
-    <meta name="description" content="Nova página usando shadcn-vue com tema claro/escuro automático" />
-  </Head>
-
   <header class="px-4 sm:px-8 py-4 flex justify-between items-center max-w-6xl mx-auto">
     <Link :href="route('home')">
-    <img src="@assets/media/logo.svg" alt="Logo" class="w-12 h-12 rounded-full" />
+    <img src="@assets/media/logo.svg" alt="Logo" class="w-12 h-12 rounded-full select-none" />
     </Link>
     <AppearanceTabs />
   </header>
@@ -35,16 +29,22 @@ const user = page.props.auth?.user;
         </p>
 
         <div v-if="user" class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <Button size="lg" class="bg-primary text-primary-foreground" as-child>
+          <Button size="lg"
+            class="bg-primary text-primary-foreground select-none transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+            as-child>
             <Link :href="route('dashboard')">Dashboard</Link>
           </Button>
         </div>
 
         <div v-else class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <Button size="lg" class="bg-primary text-primary-foreground w-full sm:w-auto" as-child>
+          <Button size="lg"
+            class="bg-primary text-primary-foreground w-full sm:w-auto select-none transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+            as-child>
             <Link :href="route('register')">Cadastrar</Link>
           </Button>
-          <Button size="lg" variant="outline" class="w-full sm:w-auto" as-child>
+          <Button size="lg" variant="outline"
+            class="w-full sm:w-auto select-none transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+            as-child>
             <Link :href="route('login')">Entrar</Link>
           </Button>
         </div>
@@ -220,9 +220,11 @@ const user = page.props.auth?.user;
       class="bg-primary text-primary-foreground rounded-2xl py-12 sm:py-16 px-6 text-center space-y-6 mx-4 sm:mx-0">
       <h2 class="text-2xl sm:text-3xl font-bold">Pronto para começar?</h2>
       <p class="text-base sm:text-lg opacity-90">Acesse agora mesmo e transforme seu aprendizado.</p>
-      <Button size="lg" class="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto" as-child>
-        <Link v-if="user" :href="route('dashboard')">Dashboard</Link>
-        <Link v-else :href="route('register')">Criar conta grátis</Link>
+      <Button size="lg"
+        class="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+        as-child>
+        <Link v-if="user" :href="route('dashboard')" class="select-none">Dashboard</Link>
+        <Link v-else :href="route('register')" class="select-none">Criar conta</Link>
       </Button>
     </section>
   </main>

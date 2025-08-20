@@ -17,6 +17,10 @@ defineProps<{
     <AppLogoIcon class="w-14 h-14 fill-current" />
     <span class="font-bold text-lg">{{ name }}</span>
     </Link>
+    <div v-if="quote" class="absolute bottom-10 left-10 mt-8 text-sm text-white/80 z-40 max-w-80">
+        <blockquote class="italic">&ldquo;{{ quote.message }}&rdquo;</blockquote>
+        <footer class="mt-1">{{ quote.author }}</footer>
+    </div>
     <div class="grid lg:grid-cols-2 min-h-screen">
         <div class="relative flex flex-col items-center justify-center p-10 text-white hidden lg:flex" :style="{
             background: 'linear-gradient(90deg, var(--primary-gradient), var(--secondary-gradient))',
@@ -37,17 +41,15 @@ defineProps<{
                         </Link>
                     </slot>
                 </div>
-                <div v-if="quote" class="mt-8 text-sm text-white/80">
-                    <blockquote class="italic">&ldquo;{{ quote.message }}&rdquo;</blockquote>
-                    <footer class="mt-1">{{ quote.author }}</footer>
-                </div>
+
             </div>
         </div>
 
         <div class="flex items-center justify-center p-8 lg:p-16">
             <div class="w-full max-w-md space-y-6">
                 <div class="text-center space-y-2">
-                    <h1 v-if="title" class="text-3xl sm:text-4xl font-[1000] tracking-tight text-[#3B5F4A]">{{ title }}</h1>
+                    <h1 v-if="title" class="text-3xl sm:text-4xl font-[1000] tracking-tight text-[#3B5F4A]">{{ title }}
+                    </h1>
                     <p v-if="description" class="text-muted-foreground text-sm sm:text-base">{{ description }}</p>
                 </div>
 

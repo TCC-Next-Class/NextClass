@@ -18,7 +18,7 @@ defineProps<{
 <template>
     <AuthBase title="Bem vindo de volta!" description="Para continuar conectado conosco, faça login com suas informações pessoais.">
 
-        <Head title="Log in" />
+        <Head title="Entrar" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-center text-green-600">
             {{ status }}
@@ -37,7 +37,7 @@ defineProps<{
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block">Email</span>
+                        <span class="bg-input/30 px-1 block select-none">Email</span>
                     </label>
                     <InputError :message="errors.email" />
                 </div>
@@ -51,12 +51,12 @@ defineProps<{
                 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
                 peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
                 peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block">Senha</span>
+                        <span class="bg-input/30 px-1 block select-none">Senha</span>
                     </label>
                     <InputError :message="errors.password" />
 
                     <TextLink v-if="canResetPassword" :href="route('password.request')"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-primary hover:underline"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-primary no-underline hover:underline"
                         :tabindex="5">
                         Esqueceu?
                     </TextLink>

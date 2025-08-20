@@ -10,12 +10,14 @@ defineProps<{
 </script>
 
 <template>
-    <div class="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
+    <div class="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10" :style="{
+        background: 'linear-gradient(90deg, var(--secondary-gradient), var(--primary-gradient))',
+    }">
         <div class="flex w-full max-w-md flex-col gap-6">
             <Link :href="route('home')" class="flex items-center gap-2 self-center font-medium">
-                <div class="flex h-9 w-9 items-center justify-center">
-                    <AppLogoIcon class="size-9 fill-current text-black dark:text-white" />
-                </div>
+            <div class="flex size-14 items-center justify-center">
+                <AppLogoIcon class="size-14 fill-current text-black dark:text-white select-none" />
+            </div>
             </Link>
 
             <div class="flex flex-col gap-6">
