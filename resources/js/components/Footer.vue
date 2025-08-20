@@ -1,21 +1,134 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link } from "@inertiajs/vue3";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Github, Twitter, Linkedin } from "lucide-vue-next"
 </script>
+
 <template>
-    <footer id="sobre" class="relative w-full min-w-full max-w-2xl px-6 py-8 text-black">
-        <div class="flex items-center gap-6 py-8 justify-center">
-            <Link :href="route('home')">
-            <img src="@assets/media/logo.svg" alt="Logo" class="w-24 h-24 rounded-full select-none" />
-            </Link>
+  <footer class="w-full border-t bg-background text-foreground">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
+        <div class="flex flex-col items-center md:items-start space-y-3">
+          <Link :href="route('home')" class="flex items-center gap-3">
+            <img
+              src="@assets/media/logo.svg"
+              alt="Logo"
+              class="w-14 h-14 rounded-full select-none"
+            />
+            <span class="text-xl font-bold">NextClass</span>
+          </Link>
+          <p class="text-muted-foreground max-w-xs text-center md:text-left">
+            Uma plataforma de ensino online com recursos modernos para melhorar seu aprendizado.
+          </p>
         </div>
 
-        <div class="text-center text-base md:text-xl">
-            <div class="flex justify-center gap-6">
-                <Link href="/sobre" class="hover:underline">Sobre</Link>|
-                <Link href="/contato" class="hover:underline">Segurança de dados</Link>|
-                <Link href="/politica-de-privacidade" class="hover:underline">Termos</Link>
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 text-center md:text-left">
+          <div>
+            <h4 class="text-sm font-semibold mb-3">Institucional</h4>
+            <ul class="space-y-2">
+              <li>
+                <Link
+                  href="/sobre"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Sobre</Link>
+              </li>
+              <li>
+                <Link
+                  href="/contato"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Contato</Link>
+              </li>
+              <li>
+                <Link
+                  href="/politica-de-privacidade"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Privacidade</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold mb-3">Recursos</h4>
+            <ul class="space-y-2">
+              <li>
+                <Link
+                  href="/cursos"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Cursos</Link>
+              </li>
+              <li>
+                <Link
+                  href="/planos"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Planos</Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  class="hover:underline hover:text-primary transition-colors"
+                >FAQ</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold mb-3">Ajuda</h4>
+            <ul class="space-y-2">
+              <li>
+                <Link
+                  href="/suporte"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Suporte</Link>
+              </li>
+              <li>
+                <Link
+                  href="/seguranca"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Segurança</Link>
+              </li>
+              <li>
+                <Link
+                  href="/termos"
+                  class="hover:underline hover:text-primary transition-colors"
+                >Termos de uso</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="py-4 text-center text-base md:text-xl">Todos os direitos reservados a e - DC</div>
-    </footer>
+
+        <div class="flex flex-col items-center md:items-end space-y-3">
+          <p class="text-sm text-muted-foreground">Siga-nos</p>
+          <div class="flex gap-4">
+            <Button variant="outline" size="icon" as-child>
+              <a href="https://github.com/TCC-Next-Class" target="_blank" rel="noopener">
+                <Github class="w-5 h-5" />
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" as-child>
+              <a href="https://twitter.com" target="_blank" rel="noopener">
+                <Twitter class="w-5 h-5" />
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" as-child>
+              <a href="https://linkedin.com" target="_blank" rel="noopener">
+                <Linkedin class="w-5 h-5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <Separator class="my-8" />
+
+      <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-3">
+        <p class="text-sm text-muted-foreground">
+          © {{ new Date().getFullYear() }} NextClass — Todos os direitos reservados.
+        </p>
+        <p class="text-xs text-muted-foreground">
+          Desenvolvido com ❤️ usando Laravel (12) + Vue.Js (3) + Shadcn
+        </p>
+      </div>
+    </div>
+  </footer>
 </template>

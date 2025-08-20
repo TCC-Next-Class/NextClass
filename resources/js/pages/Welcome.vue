@@ -1,163 +1,231 @@
 <script setup lang="ts">
-import { Link, Head } from '@inertiajs/vue3';
-import Footer from '@/components/Footer.vue';
+import { Head, Link, usePage } from '@inertiajs/vue3'
+import Footer from '@/components/Footer.vue'
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import AppearanceTabs from '@/components/AppearanceTabs.vue'
+import { MessageSquare, Video, BookOpen, Zap, Target } from "lucide-vue-next"
 
+const page = usePage<any>();
+const user = page.props.auth?.user; 
 </script>
 <template>
 
-    <Head>
-        <title>Institucional</title>
-        <meta name="description" content="NextClass, uma plataforma de ensino online." />
-    </Head>
-    <header class="px-8 py-2 flex justify-between items-center mx-auto max-w-400">
-        <Link href="/">
-        <img src="@assets/media/logo.svg" alt="Logo"
-            class="w-13 h-13 rounded-full select-none hover:cursor-pointer" />
-        </Link>
-    </header>
-    <main class="mx-auto max-w-400">
-        <section class="min-h-120 flex items-center justify-center bg-white p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl">
-                <div class="flex justify-center">
-                    <img src="@assets/media/images/landing/int-img-1.jpg" alt="Ilustração"
-                        class="max-w-full h-auto rounded-full select-none hover:cursor-pointer">
-                </div>
+  <Head>
+    <title>Nova Landing</title>
+    <meta name="description" content="Nova página usando shadcn-vue com tema claro/escuro automático" />
+  </Head>
 
-                <div>
-                    <h1 class="text-2xl font-bold mb-4">
-                        Para todos os alunos, todas as salas de aula.
-                    </h1>
-                    <p class="text-gray-600 mb-6">
-                        Queremos sempre oferecer uma educação gratuita de alta qualidade em todos os lugares possíveis.
-                    </p>
+  <header class="px-4 sm:px-8 py-4 flex justify-between items-center max-w-6xl mx-auto">
+    <Link :href="route('home')">
+    <img src="@assets/media/logo.svg" alt="Logo" class="w-12 h-12 rounded-full" />
+    </Link>
+    <AppearanceTabs />
+  </header>
 
-                    <div class="flex gap-4">
-                        <Link href="/"
-                            class="flex-1 bg-[#3B5F4A] text-center text-white px-6 py-2 rounded-md hover:bg-green-900 hover:scale-102 cursor-pointer select-none">
-                        Cadastro
-                        </Link>
-                        <Link href="/"
-                            class="flex-1 bg-[#3B5F4A]  text-center text-white px-6 py-2 rounded-md hover:bg-green-900 hover:scale-102 cursor-pointer select-none">
-                        Login
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <main class="mx-auto max-w-6xl space-y-8 mb-24">
 
-        <section class="bg-[#3B5F4A] text-white py-12 px-6 2xl:rounded-3xl">
-            <h2 class="text-center text-3xl mb-10 font-['Inder']">Como o NextClass Funciona?</h2>
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="p-8 font-['Inder'] flex flex-col items-center">
-                    <img src="@assets/media/images/landing/fig1.svg" class="mb-4 size-24 select-none" />
-                    <h3 class="font-semibold mb-2">Aprenda rapidamente</h3>
-                    <ul class="list-none space-y-1 text-gray-400">
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            melhores ferramentas
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            mais intuitivo
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            mais simples
-                        </li>
-                    </ul>
+    <section class="flex flex-col md:flex-row items-center justify-between gap-10 py-20 px-4 sm:px-8">
+      <div class="flex-1 space-y-6 text-center md:text-left order-2 md:order-1">
+        <h1 class="text-3xl sm:text-4xl font-bold leading-tight tracking-tight">
+          Aprenda rápido e melhore seus resultados com <span class="text-primary">NextClass</span>
+        </h1>
+        <p class="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto md:mx-0">
+          Uma plataforma interativa e moderna, construída para impulsionar o seu aprendizado.
+        </p>
 
-                </div>
-                <div class="p-8 font-['Inder'] flex flex-col items-center">
-                    <img src="@assets/media/images/landing/pen-icon.png" class="mb-4 size-24 select-none" />
-                    <h3 class="font-semibold mb-2">Funcionalidades Inteligentes</h3>
-                    <ul class="list-none space-y-1 text-gray-400">
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            Busca de disciplinas otimizada
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            Histórico acadêmico completo
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            Organização de horários
-                        </li>
-                    </ul>
+        <div v-if="user" class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <Button size="lg" class="bg-primary text-primary-foreground" as-child>
+            <Link :href="route('dashboard')">Dashboard</Link>
+          </Button>
+        </div>
 
-                </div>
-                <div class="p-8 font-['Inder'] flex flex-col items-center">
-                    <img src="@assets/media/images/landing/chart-icon.png" class="mb-4 size-24 select-none" />
-                    <h3 class="font-semibold mb-2">Aprenda rapidamente</h3>
-                    <ul class="list-none space-y-1 text-gray-400">
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            Melhore seu desempenho
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            foco nos estudos
-                        </li>
-                        <li class="flex items-center">
-                            <img src="@assets/media/images/landing/check-icon.svg"
-                                class="w-4 h-4 mr-2 select-none">
-                            melhores resultados
-                        </li>
-                    </ul>
+        <div v-else class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <Button size="lg" class="bg-primary text-primary-foreground w-full sm:w-auto" as-child>
+            <Link :href="route('register')">Cadastrar</Link>
+          </Button>
+          <Button size="lg" variant="outline" class="w-full sm:w-auto" as-child>
+            <Link :href="route('login')">Entrar</Link>
+          </Button>
+        </div>
+      </div>
 
-                </div>
-            </div>
-        </section>
+      <div class="flex-1 max-w-sm sm:max-w-md md:max-w-none order-1 md:order-2">
+        <img src="@assets/media/images/landing/int-img-1.jpg" alt="Imagem"
+          class="w-full rounded-xl shadow-lg dark:shadow-none" />
+      </div>
+    </section>
 
-        <section class="min-h-120 flex items-center justify-center bg-white p-6">
-            <div class="flex gap-8 items-center max-w-5xl flex-col-reverse md:flex-row">
-                <div class="flex flex-col md:items-start">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-['Inder'] mb-4">Você tem a capacidade de aprender qualquer
-                            coisa.</h2>
-                        <p class="mb-6">Desenvolva um aprendizado sólido e profundo em matemática, ciências e muito
-                            mais.
-                        </p>
-                    </div>
-                    <Link href="/"
-                        class="flex-1 bg-[#3B5F4A] text-white px-6 py-2 rounded-md hover:bg-green-900 hover:scale-102 cursor-pointer select-none">
-                    Comece
-                    aqui!</Link>
+    <section class="py-16 px-4 sm:px-8 bg-muted/50 rounded-2xl">
+      <h2 class="text-center text-3xl font-bold mb-10">Por que escolher o NextClass?</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <BookOpen class="w-10 h-10 text-primary" />
+            <CardTitle>Estude com facilidade</CardTitle>
+            <CardDescription>Aprenda de forma mais prática e intuitiva.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="list-disc list-inside space-y-2 text-muted-foreground text-left">
+              <li>Interface moderna</li>
+              <li>Experiência fluida</li>
+              <li>Design responsivo</li>
+            </ul>
+          </CardContent>
+        </Card>
 
-                </div>
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <Zap class="w-10 h-10 text-primary" />
+            <CardTitle>Funcionalidades Inteligentes</CardTitle>
+            <CardDescription>Organize melhor seus estudos.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="list-disc list-inside space-y-2 text-muted-foreground text-left">
+              <li>Gerenciamento de horários</li>
+              <li>Histórico acadêmico completo</li>
+              <li>Busca rápida por disciplinas</li>
+            </ul>
+          </CardContent>
+        </Card>
 
-                <div class="flex justify-center max-w-xs">
-                    <img src="@assets/media/images/landing/books.svg" alt="Ilustração" class="select-none">
-                </div>
-            </div>
-        </section>
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <Target class="w-10 h-10 text-primary" />
+            <CardTitle>Foco e Resultados</CardTitle>
+            <CardDescription>Maximize seu desempenho.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="list-disc list-inside space-y-2 text-muted-foreground text-left">
+              <li>Relatórios detalhados</li>
+              <li>Estudo gamificado</li>
+              <li>Feedback instantâneo</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
 
-        <section class="bg-[#3B5F4A] py-20 px-6 font-['Inder'] 2xl:rounded-3xl">
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-lg p-6 text-center shadow">
-                    <p class="font-semibold pt-3 pb-12 text-2xl">Vídeo Aulas</p>
-                    <img src="@assets/media/images/landing/video-aula.svg"
-                        class="mx-auto mb-4 size-40 select-none" />
-                </div>
-                <div class="bg-white rounded-lg p-6 text-2xl text-center shadow">
-                    <p class="font-semibold pt-3  pb-12">Chat interativo</p>
-                    <img src="@assets/media/images/landing/chat.svg" class="mx-auto mb-4 size-40 select-none" />
-                </div>
-                <div class="bg-white rounded-lg p-6 text-2xl text-center shadow">
-                    <p class="font-semibold pt-3 pb-12">Vídeo Chamada</p>
-                    <img src="@assets/media/images/landing/video-chamada.svg"
-                        class="mx-auto mb-4 size-40 select-none" />
-                </div>
-            </div>
-        </section>
-    </main>
-    <Footer />
+    <section class="flex flex-col md:flex-row items-center gap-10 py-16 px-4 sm:px-8">
+      <div class="flex-1 order-2 md:order-1 flex justify-center order-1 md:order-2">
+        <div class="p-6 bg-muted rounded-xl shadow-md">
+          <MessageSquare class="w-20 h-20 text-primary" />
+        </div>
+      </div>
+      <div class="flex-2 order-1 md:order-2 space-y-6 text-center md:text-left order-2 md:order-1">
+        <h2 class="text-3xl font-bold">Chat ao vivo nas turmas</h2>
+        <p class="text-muted-foreground text-lg max-w-xl mx-auto md:mx-0">
+          Interaja em tempo real com colegas e professores, compartilhe dúvidas e colabore diretamente durante as aulas.
+        </p>
+      </div>
+    </section>
+
+    <section class="flex flex-col md:flex-row items-center gap-10 py-16 px-4 sm:px-8">
+      <div class="flex-2 space-y-6 text-center md:text-left order-2 md:order-1">
+        <h2 class="text-3xl font-bold">Aulas ao vivo integradas</h2>
+        <p class="text-muted-foreground text-lg max-w-xl mx-auto md:mx-0">
+          Participe de videochamadas diretamente no NextClass, sem precisar sair da plataforma.
+          Compartilhe tela, interaja com áudio e vídeo, tudo em um só lugar.
+        </p>
+      </div>
+      <div class="flex-1 flex justify-center order-1 md:order-2">
+        <div class="p-6 bg-muted rounded-xl shadow-md">
+          <Video class="w-20 h-20 text-primary" />
+        </div>
+      </div>
+    </section>
+
+    <section class="flex flex-col md:flex-row items-center gap-10 py-16 px-4 sm:px-8">
+      <div class="flex-1 flex justify-center order-2 md:order-1">
+        <div class="p-6 bg-muted rounded-xl shadow-md">
+          <BookOpen class="w-20 h-20 text-primary" />
+        </div>
+      </div>
+      <div class="flex-2 space-y-6 text-center md:text-left order-1 md:order-2">
+        <h2 class="text-3xl font-bold">Formulários interativos integrados</h2>
+        <p class="text-muted-foreground text-lg max-w-xl mx-auto md:mx-0">
+          Crie e responda questionários sem precisar de ferramentas externas.
+          Professores podem avaliar em tempo real e alunos recebem feedback imediato.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16 px-4 sm:px-8 bg-muted/50 rounded-2xl">
+      <h2 class="text-center text-3xl font-bold mb-12">Colaboração que impulsiona resultados</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <Zap class="w-10 h-10 text-primary" />
+            <CardTitle>Tarefas organizadas</CardTitle>
+            <CardDescription>Gerencie prazos com facilidade</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p class="text-muted-foreground text-sm text-center">
+              Professores podem criar e acompanhar entregas, enquanto alunos recebem alertas de prazos.
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <Target class="w-10 h-10 text-primary" />
+            <CardTitle>Salas colaborativas</CardTitle>
+            <CardDescription>Estude junto com a turma</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p class="text-muted-foreground text-sm text-center">
+              Ambientes virtuais para trabalhos em grupo, troca de arquivos e organização de ideias.
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader class="flex flex-col items-center text-center space-y-3">
+            <MessageSquare class="w-10 h-10 text-primary" />
+            <CardTitle>Comunicação fluida</CardTitle>
+            <CardDescription>Chats e notificações integrados</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p class="text-muted-foreground text-sm text-center">
+              Receba avisos da turma em tempo real e mantenha todos sempre atualizados.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-8">
+      <h2 class="text-center text-3xl font-bold mb-12">O que estão dizendo sobre o NextClass</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <Card>
+          <CardContent class="p-6">
+            <p class="text-muted-foreground italic">
+              "O NextClass transformou minha forma de dar aulas. Os alunos participam mais e consigo organizar tudo em
+              um
+              só lugar."
+            </p>
+            <p class="mt-4 font-semibold">— Prof. Ana Souza</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent class="p-6">
+            <p class="text-muted-foreground italic">
+              "As aulas ao vivo integradas são incríveis! Não preciso mais alternar entre várias plataformas."
+            </p>
+            <p class="mt-4 font-semibold">— João Pereira, aluno</p>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <section
+      class="bg-primary text-primary-foreground rounded-2xl py-12 sm:py-16 px-6 text-center space-y-6 mx-4 sm:mx-0">
+      <h2 class="text-2xl sm:text-3xl font-bold">Pronto para começar?</h2>
+      <p class="text-base sm:text-lg opacity-90">Acesse agora mesmo e transforme seu aprendizado.</p>
+      <Button size="lg" class="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto" as-child>
+        <Link v-if="user" :href="route('dashboard')">Dashboard</Link>
+        <Link v-else :href="route('register')">Criar conta grátis</Link>
+      </Button>
+    </section>
+  </main>
+
+  <Footer />
 </template>
