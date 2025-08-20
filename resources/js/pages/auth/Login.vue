@@ -77,7 +77,9 @@ defineProps<{
 
             <div class="text-sm text-center text-muted-foreground">
                 Não tem uma conta?
-                <TextLink :href="route('register')" :tabindex="5">Criar conta</TextLink>
+                <TextLink :href="route('register')" class="underline underline-offset-4 hover:text-primary" :tabindex="6">
+                    Criar conta
+                </TextLink>
             </div>
         </Form>
 

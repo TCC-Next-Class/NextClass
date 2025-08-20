@@ -48,7 +48,7 @@ defineProps<{
         <div class="flex items-center justify-center p-8 lg:p-16">
             <div class="w-full max-w-md space-y-6">
                 <div class="text-center space-y-2">
-                    <h1 v-if="title" class="text-3xl sm:text-4xl font-[1000] tracking-tight text-[#3B5F4A]">{{ title }}
+                    <h1 v-if="title" class="text-3xl sm:text-4xl font-[1000] tracking-tight text-primary">{{ title }}
                     </h1>
                     <p v-if="description" class="text-muted-foreground text-sm sm:text-base">{{ description }}</p>
                 </div>
