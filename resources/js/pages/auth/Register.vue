@@ -35,6 +35,35 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
                 </div>
 
                 <div class="relative">
+  <User class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+  
+  <Input
+    id="cpf"
+    type="text"
+    required
+    :tabindex="1"
+    autocomplete="off"
+    name="cpf"
+    placeholder=" "
+    class="peer pl-10 bg-input/30"
+    v-model="cpf"
+    @input="formatCpf"
+  />
+
+  <label
+    for="cpf"
+    class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
+           peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
+           peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
+           peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
+    <span class="bg-input/30 px-1 block select-none">CPF</span>
+  </label>
+
+  <InputError :message="errors.cpf" />
+</div>
+
+
+                <div class="relative">
                     <Mail class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input id="email" type="email" required :tabindex="2" autocomplete="email" name="email"
                         placeholder=" " class="peer pl-10 bg-input/30" />
