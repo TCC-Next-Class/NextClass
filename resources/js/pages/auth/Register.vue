@@ -94,7 +94,7 @@ import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
         <template #login-button>
             <Link :href="route('login')"
                 class="px-6 py-3 rounded-lg bg-white font-semibold hover:bg-gray-100 w-full sm:w-auto text-center border border-white/50">
-            <span class="bg-clip-text text-transparent"
+            <span class="bg-clip-text text-transparent select-none"
                 style="background-image: linear-gradient(90deg, var(--primary-gradient), var(--secondary-gradient));">
                 Entrar
             </span>
