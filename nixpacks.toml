@@ -1,14 +1,7 @@
 [phases.setup]
-cmds = [
-    "cd /",
-    "rm -rf /app",
-    "git clone --recurse-submodules $REPO_URL /app",
-]
 nixPkgs = [
     "...",
     "python311Packages.supervisor",
-
-    '(lib.recursiveUpdate php83Packages.composer { meta.priority = php83Packages.composer.meta.priority or 0 -1; })',
 ]
 
 [phases.build]
