@@ -3,8 +3,9 @@ nixPkgs = [
     "...",
     "python311Packages.supervisor",
 ]
+
 [variables]
-    NODE_VERSION = "22"
+NODE_VERSION = "22"
 
 [phases.build]
 cmds = [
