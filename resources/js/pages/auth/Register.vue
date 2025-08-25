@@ -32,7 +32,7 @@ const formatCpf = (event) => {
             v-slot="{ errors, processing }"
             class="flex flex-col gap-6"
         >
-            <div class="grid gap-5">
+            <div class="grid gap-7">
                 <div class="relative">
                     <User class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
@@ -45,7 +45,7 @@ const formatCpf = (event) => {
                         autocomplete="name"
                         name="name"
                         placeholder=" "
-                        class="peer bg-input/30 pl-10"
+                        :class="[errors.email ? 'border border-red-500 focus:border-primary' : 'border border-input focus:border-primary', 'peer bg-input/30 pl-10']"
                     />
 
                     <label
@@ -55,7 +55,7 @@ const formatCpf = (event) => {
                         <span class="block bg-input/30 px-1 select-none">Nome completo</span>
                     </label>
 
-                    <InputError :message="errors.name" />
+                    <InputError class="absolute" :message="errors.name" />
                 </div>
 
                 <div class="relative">
@@ -82,7 +82,7 @@ const formatCpf = (event) => {
                         <span class="block bg-input/30 px-1 select-none">CPF</span>
                     </label>
 
-                    <InputError :message="errors.cpf" />
+                    <InputError class="absolute" :message="errors.cpf" />
                 </div>
 
                 <div class="relative">
@@ -103,7 +103,7 @@ const formatCpf = (event) => {
                     >
                         <span class="block bg-input/30 px-1 select-none">Email</span>
                     </label>
-                    <InputError :message="errors.email" />
+                    <InputError class="absolute"  :message="errors.email" />
                 </div>
 
                 <div class="relative">
@@ -124,7 +124,7 @@ const formatCpf = (event) => {
                     >
                         <span class="block bg-input/30 px-1 select-none">Senha</span>
                     </label>
-                    <InputError :message="errors.password" />
+                    <InputError class="absolute"  :message="errors.password" />
                 </div>
 
                 <div class="relative">
@@ -145,7 +145,7 @@ const formatCpf = (event) => {
                     >
                         <span class="block bg-input/30 px-1 select-none">Confirmar Senha</span>
                     </label>
-                    <InputError :message="errors.password_confirmation" />
+                    <InputError class="absolute" :message="errors.password_confirmation" />
                 </div>
 
                 <Button
