@@ -31,4 +31,23 @@ class CreateRequest extends FormRequest
             'cpf' => ['required', 'string', new Cpf()],
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [ 
+            'name.required' => "O nome é obrigatorio",
+            'email.required' => "O email é obrigatorio",
+            'password.required' => "A senha é obrigatoria",
+            'cpf.required' => "O CPF é obrigatorio",
+            'email.unique' => "O email já está em uso",
+            'cpf.unique' => "O CPF já está em uso",
+            'password.confirmed' => "As senhas não coincidem",
+            'password.min' => "A senha deve ter pelo menos 8 caracteres"
+        ];
+    }
 }

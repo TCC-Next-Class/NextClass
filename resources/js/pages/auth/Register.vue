@@ -4,129 +4,177 @@ import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AuthBase from '@/layouts/AuthLayoutSplit.vue';
-import { Link, Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle, User, Mail, Lock } from 'lucide-vue-next';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import { IdCard, LoaderCircle, Lock, Mail, User } from 'lucide-vue-next';
+
+import { ref } from 'vue';
+
+const cpf = ref('');
+
+const formatCpf = (event) => {
+    let value = event.target.value.replace(/\D/g, '');
+    value = value.slice(0, 11);
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    cpf.value = value;
+};
 </script>
 
 <template>
-
     <AuthBase title="Crie uma conta" description="Insira suas informações pessoais para criar a conta.">
-
         <Head title="Criar conta" />
 
-        <Form method="post" :action="route('register')" :reset-on-success="['password', 'password_confirmation']"
-            v-slot="{ errors, processing }" class="flex flex-col gap-6">
-            <div class="grid gap-6">
+        <Form
+            method="post"
+            :action="route('register')"
+            :reset-on-success="['password', 'password_confirmation']"
+            v-slot="{ errors, processing }"
+            class="flex flex-col gap-6"
+        >
+            <div class="grid gap-5">
                 <div class="relative">
-                    <User class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <User class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
-                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" name="name"
-                        placeholder=" " class="peer pl-10 bg-input/30" />
+                    <Input
+                        id="name"
+                        type="text"
+                        required
+                        autofocus
+                        :tabindex="1"
+                        autocomplete="name"
+                        name="name"
+                        placeholder=" "
+                        class="peer bg-input/30 pl-10"
+                    />
 
-                    <label for="name"
-                        class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
-                peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
-                peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
-                peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block select-none">Nome</span>
+                    <label
+                        for="name"
+                        class="absolute top-1/2 left-10 -translate-y-1/2 bg-background text-sm text-muted-foreground transition-all peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary hover:cursor-text"
+                    >
+                        <span class="block bg-input/30 px-1 select-none">Nome completo</span>
                     </label>
 
                     <InputError :message="errors.name" />
                 </div>
 
                 <div class="relative">
-  <User class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-  
-  <Input
-    id="cpf"
-    type="text"
-    required
-    :tabindex="1"
-    autocomplete="off"
-    name="cpf"
-    placeholder=" "
-    class="peer pl-10 bg-input/30"
-    v-model="cpf"
-    @input="formatCpf"
-  />
+                    <IdCard class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
-  <label
-    for="cpf"
-    class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
-           peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
-           peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
-           peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-    <span class="bg-input/30 px-1 block select-none">CPF</span>
-  </label>
+                    <Input
+                        id="cpf"
+                        type="text"
+                        required
+                        tabindex="1"
+                        autocomplete="off"
+                        name="cpf"
+                        placeholder="___.___.___-__"
+                        class="peer bg-input/30 pl-10 placeholder:text-muted-foreground"
+                        v-model="cpf"
+                        @input="formatCpf"
+                        maxlength="14"
+                    />
 
-  <InputError :message="errors.cpf" />
-</div>
+                    <label
+                        for="cpf"
+                        class="absolute left-10 -translate-y-1/2 bg-background text-sm text-muted-foreground transition-all top-0 text-xs text-primary hover:cursor-text"
+                    >
+                        <span class="block bg-input/30 px-1 select-none">CPF</span>
+                    </label>
 
+                    <InputError :message="errors.cpf" />
+                </div>
 
                 <div class="relative">
-                    <Mail class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input id="email" type="email" required :tabindex="2" autocomplete="email" name="email"
-                        placeholder=" " class="peer pl-10 bg-input/30" />
-                    <label for="email"
-                        class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
-                peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
-                peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
-                peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block select-none">Email</span>
+                    <Mail class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        id="email"
+                        type="email"
+                        required
+                        :tabindex="2"
+                        autocomplete="email"
+                        name="email"
+                        placeholder=" "
+                        class="peer bg-input/30 pl-10"
+                    />
+                    <label
+                        for="email"
+                        class="absolute top-1/2 left-10 -translate-y-1/2 bg-background text-sm text-muted-foreground transition-all peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary hover:cursor-text"
+                    >
+                        <span class="block bg-input/30 px-1 select-none">Email</span>
                     </label>
                     <InputError :message="errors.email" />
                 </div>
 
                 <div class="relative">
-                    <Lock class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input id="password" type="password" required :tabindex="3" autocomplete="new-password"
-                        name="password" placeholder=" " class="peer pl-10 bg-input/30" />
-                    <label for="password"
-                        class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
-                peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
-                peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
-                peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block select-none">Senha</span>
+                    <Lock class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        id="password"
+                        type="password"
+                        required
+                        :tabindex="3"
+                        autocomplete="new-password"
+                        name="password"
+                        placeholder=" "
+                        class="peer bg-input/30 pl-10"
+                    />
+                    <label
+                        for="password"
+                        class="absolute top-1/2 left-10 -translate-y-1/2 bg-background text-sm text-muted-foreground transition-all peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary hover:cursor-text"
+                    >
+                        <span class="block bg-input/30 px-1 select-none">Senha</span>
                     </label>
                     <InputError :message="errors.password" />
                 </div>
 
                 <div class="relative">
-                    <Lock class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input id="password_confirmation" type="password" required :tabindex="4" autocomplete="new-password"
-                        name="password_confirmation" placeholder=" " class="peer pl-10 bg-input/30" />
-                    <label for="password_confirmation"
-                        class="hover:cursor-text absolute bg-background left-10 top-1/2 -translate-y-1/2 text-sm text-muted-foreground transition-all
-                peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground
-                peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary
-                peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground">
-                        <span class="bg-input/30 px-1 block select-none">Confirmar Senha</span>
+                    <Lock class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        id="password_confirmation"
+                        type="password"
+                        required
+                        :tabindex="4"
+                        autocomplete="new-password"
+                        name="password_confirmation"
+                        placeholder=" "
+                        class="peer bg-input/30 pl-10"
+                    />
+                    <label
+                        for="password_confirmation"
+                        class="absolute top-1/2 left-10 -translate-y-1/2 bg-background text-sm text-muted-foreground transition-all peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-foreground peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-muted-foreground peer-focus:top-0 peer-focus:text-xs peer-focus:text-primary hover:cursor-text"
+                    >
+                        <span class="block bg-input/30 px-1 select-none">Confirmar Senha</span>
                     </label>
                     <InputError :message="errors.password_confirmation" />
                 </div>
 
-                <Button type="submit"
-                    class="w-full mt-2 flex items-center justify-center gap-2 cursor-pointer hover:bg-primary/80"
-                    tabindex="5" :disabled="processing">
-                    <LoaderCircle v-if="processing" class="w-4 h-4 animate-spin" />
+                <Button
+                    type="submit"
+                    class="mt-2 flex w-full cursor-pointer items-center justify-center gap-2 hover:bg-primary/80"
+                    tabindex="5"
+                    :disabled="processing"
+                >
+                    <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
                     <span>Cadastrar</span>
                 </Button>
             </div>
 
-            <div class="text-sm text-center text-muted-foreground">
+            <div class="text-center text-sm text-muted-foreground">
                 Já tem uma conta?
-                <TextLink :href="route('login')" class="underline underline-offset-4 hover:text-primary" :tabindex="6">
-                    Entrar
-                </TextLink>
+                <TextLink :href="route('login')" class="underline underline-offset-4 hover:text-primary" :tabindex="6"> Entrar </TextLink>
             </div>
         </Form>
         <template #login-button>
-            <Link :href="route('login')"
-                class="px-6 py-3 rounded-lg bg-white font-semibold hover:bg-gray-100 w-full sm:w-auto text-center border border-white/50">
-            <span class="bg-clip-text text-transparent select-none"
-                style="background-image: linear-gradient(90deg, var(--primary-gradient), var(--secondary-gradient));">
-                Entrar
-            </span>
+            <Link
+                :href="route('login')"
+                class="w-full rounded-lg border border-white/50 bg-white px-6 py-3 text-center font-semibold hover:bg-gray-100 sm:w-auto"
+            >
+                <span
+                    class="bg-clip-text text-transparent select-none"
+                    style="background-image: linear-gradient(90deg, var(--primary-gradient), var(--secondary-gradient))"
+                >
+                    Entrar
+                </span>
             </Link>
         </template>
     </AuthBase>

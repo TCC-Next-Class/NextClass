@@ -52,7 +52,7 @@ const user = page.props.auth?.user;
 
       <div class="flex-1 max-w-sm sm:max-w-md md:max-w-none order-1 md:order-2">
         <img src="@assets/media/images/landing/int-img-1.jpg" alt="Imagem"
-          class="w-full rounded-xl shadow-lg dark:shadow-none" />
+          class="w-full rounded-xl shadow-lg dark:shadow-none select-none" />
       </div>
     </section>
 

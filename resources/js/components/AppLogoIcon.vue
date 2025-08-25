@@ -13,5 +13,5 @@ defineProps<Props>();
 </script>
 
 <template>
-    <img :class="[className, 'rounded-full']" v-bind="$attrs" src="@assets/media/logo.svg" alt="Logo">
+    <img :class="[className, 'rounded-full', 'select-none']" v-bind="$attrs" src="@assets/media/logo.svg" alt="Logo">
 </template>

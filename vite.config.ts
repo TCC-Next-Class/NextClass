@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    server: {
+        host: '192.168.0.2'
+    },
     plugins: [
         laravel({
             input: ['resources/js/app.ts'],
